@@ -3,6 +3,7 @@ const app = new Vue({
 	vuetify: new Vuetify({}),
 	el: '#app',
 	data: () => ({
+		source: true,
 		drawer: null,
 	}),
 	computed: {
@@ -44,7 +45,7 @@ const app = new Vue({
 				<v-row align="center" justify="center">
 					<v-col class="text-center">
 						<v-tooltip left>
-							<template v-slot:{on}">
+							<template v-slot:${on}">
 								<v-btn :href="source" icon large target="_blank" v-on="on">
 									<v-icon large>mdi-code-tags</v-icon>
 								</v-btn>
