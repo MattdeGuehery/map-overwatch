@@ -1,4 +1,4 @@
-var imagecarousel = Vue.component('image-carousel', {
+Vue.component('image-carousel', {
 	data: () => ({
 
 	}),
@@ -11,8 +11,9 @@ var imagecarousel = Vue.component('image-carousel', {
 
 	},
 	template: `
-	<v-carousel continuous mandatory hide-delimiters hide-delimiter-background show-arrows show-arrows-on-hover>
-		<v-carousel-item v-for="(image, index) in images" :key="index" :src="image.url">
+	<v-carousel continuous mandatory hide-delimiter-background show-arrows show-arrows-on-hover height="75%">
+		<v-carousel-item v-for="(image, index) in images" :key="index">
+			<img :src="image.url"></img>
 		</v-carousel-item>
 	</v-carousel>
 	`

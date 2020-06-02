@@ -25,8 +25,19 @@
 	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.30/dist/vuetify.js"></script>
 	<script>
-		openingTab = 0;
-		component_name = 'home-cards';
+		var global_images = [
+			{ id: 0, url: "/static/maps/Dorado/Dorado+map+callouts+one+Overwatch.png" },
+			{ id: 1, url: "/static/maps/Dorado/Dorado+map+callouts+two+Overwatch.png" },
+			{ id: 2, url: "/static/maps/Dorado/Dorado+map+callouts+three+Overwatch.png" },
+			{ id: 3, url: "/static/maps/Dorado/Dorado+map+callouts+four+Overwatch.png" },
+			{ id: 4, url: "/static/maps/Dorado/Dorado+map+callouts+five+Overwatch.png" },
+			{ id: 5, url: "/static/maps/Dorado/Dorado+map+callouts+six+Overwatch.png" },
+			{ id: 6, url: "/static/maps/Dorado/Dorado+map+callouts+seven+Overwatch.png" },
+		];
+	</script>
+	<script>
+		openingTab = 1;
+		component_name = 'image-carousel';
 	</script>
 	<script src="{% static 'js/cookies.js' %}"></script>
 </head>
@@ -35,7 +46,7 @@
 	<div id="app">
 		<!-- vue code will be placed here -->
 	</div>
-	<script src="{% static 'js/home.js' %}"></script>
+	<script src="{% static 'js/image-carousel.js' %}"></script>
 	<script src="{% static 'js/main-app-bar.js' %}"></script>
 	<script src="{% static 'js/index.js' %}"></script>
 </body>

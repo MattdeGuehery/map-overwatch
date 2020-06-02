@@ -1,4 +1,4 @@
-var homecards = Vue.component('home-cards', {
+Vue.component('home-cards', {
 	data: () => ({
 
 	}),
