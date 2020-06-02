@@ -10,6 +10,10 @@ def index(request):
     return render(request, 'index.html')
 
 
+def mapcallouts(request):
+    return render(request, 'mapcallouts.html')
+
+
 # an example endpoint. This will probably change
 def get_maps(request):
     maps = [
