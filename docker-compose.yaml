@@ -1,9 +1,26 @@
-version: "3.8"
+version: "3.2"
 services:
-  web:
+  app:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn --bind 0.0.0.0:8000 mapoverwatchproject.wsgi:application
+    # command: python manage.py makemigrations && python manage.py migrate && python manage.py runserver
+    container_name: app
     volumes:
       - .:/code
     ports:
       - "8000:8000"
+    env_file:
+      - ./.env
+  nginx:
+    image: nginx:1.18
+    container_name: webserver
+    ports:
+      - "443:443"
+      - "80:80"
+    volumes:
+      - ./mapoverwatchapp/static/maps:/var/www/html/images/maps
+      - ./mapoverwatchapp/static/js:/var/www/html/js
+      - ./mapoverwatchapp/static/css:/var/www/html/css
+      - ./config/nginx/:/etc/nginx/conf.d
+    depends_on:
+      - app

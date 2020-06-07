@@ -21,7 +21,6 @@ Vue.component('main-app-bar', {
 			let tabCards = [];
 			tabCards.push({ name: 'Home', text: '', id: 0, link: '/', });
 			tabCards.push({ name: 'Map Callouts', text: '', id: 1, link: '/mapcallouts/', });
-			tabCards.push({ name: 'Top Down Maps', text: '', id: 2, link: '/topdownmaps/', });
 			return tabCards;
 		}
 	},
