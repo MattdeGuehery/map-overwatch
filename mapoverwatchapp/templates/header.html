@@ -20,32 +20,18 @@
 	</link>
 	<script src="https://unpkg.com/axios@0.19.0/dist/axios.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
-	<script src="https://unpkg.com/vue-router@3.1.2/dist/vue-router.js"></script>
-	<script src="https://unpkg.com/vuex@3.1.1/dist/vuex.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/lodash@4.17.5/lodash.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/vuetify@2.2.30/dist/vuetify.js"></script>
-	<script>
-		var map_list = [{ id: 1, name: 'Dorado' }]
-	</script>
-	<script>
-		openingTab = 1;
-		component_name = 'image-carousel';
-	</script>
+
+	{% if debug %}
+	<script src="{% static 'js/cookies.js' %}"></script>
+	{% else %}
 	<script src="cookies.js"></script>
-	<!-- <script src="{% static 'js/cookies.js' %}"></script> -->
+	{% endif %}
 </head>
 
 <body>
-	<div id="app">
-		<!-- vue code will be placed here -->
-	</div>
-	<script src="home.js"></script>
-	<script src="image-carousel.js"></script>
-	<script src="main-app-bar.js"></script>
-	<script src="index.js"></script>
-	<!-- <script src="{% static 'js/image-carousel.js' %}"></script> -->
-	<!-- <script src="{% static 'js/main-app-bar.js' %}"></script> -->
-	<!-- <script src="{% static 'js/index.js' %}"></script>-->
+	{% block body %}{% endblock %}
 </body>
 
 </html>
