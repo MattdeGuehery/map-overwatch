@@ -10,7 +10,14 @@ Vue.component('map-list', {
 			return buttons;
 		},
 		mapList: function () {
-			var data = _.sortBy(data, 'map_id');
+			var data = [];
+			_.forEach(window.data, function (map) {
+				if (_.includes(map.map_name, '-')) {
+					map.map_name = _.trim(map.map_name.slice(0, map.map_name.indexOf('-')));
+				}
+				data.push(map);
+			});
+			data = _.chain(data).uniqBy('map_name').sortBy('map_id').value();
 			if (this.listType) {
 				data = _.groupBy(data, 'map_type');
 			}

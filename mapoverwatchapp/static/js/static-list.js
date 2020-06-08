@@ -10,14 +10,15 @@ Vue.component('static-list', {
 	}),
 	computed: {
 		mapList: function () {
-			return this.listData;
+			var data = _.sortBy(this.listData, 'map_name');
+			return data;
 		}
 	},
 	template: `
 	<v-row>
 		<v-col cols="12" class="text-center">
 			<v-row v-for="(map, i) in mapList" :key="i">
-				<v-col cols="12">{{ map.map_name }}</v-col>
+				<v-col cols="12"><a :href="map.map_url">{{ map.map_name }}</a></v-col>
 			</v-row>
 		</v-col>
 	</v-row>
