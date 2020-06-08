@@ -22,7 +22,6 @@ class map_table(models.Model):
 
 
 class image_table(models.Model):
-    image_id = models.IntegerField()
     image_map = models.IntegerField()
     image_url = models.CharField(max_length=300)
     image_order = models.IntegerField()

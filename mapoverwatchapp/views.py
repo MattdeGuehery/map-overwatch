@@ -27,11 +27,9 @@ def mapcallouts(request, map_id):
 	map_id = map_id or request.GET['map_id']
 	logger.info('map_id=' + str(map_id))
 	data_from_db = image_table.objects.filter(image_map=map_id)
-	logger.info(data_from_db)
 	formatted_data = []
 	for image in data_from_db:
 		formatted_data.append({
-			'image_id': image.image_id,
 			'image_map': image.image_map,
 			'image_url': image.image_url,
 			'image_order': image.image_order,
