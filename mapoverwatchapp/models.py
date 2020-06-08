@@ -13,8 +13,6 @@ MAP_TYPE = [
 
 class map_table(models.Model):
     map_name = models.CharField(max_length=120)
-    map_id = models.IntegerField()
-
     map_type = models.CharField(
         max_length=2,
         choices=MAP_TYPE,

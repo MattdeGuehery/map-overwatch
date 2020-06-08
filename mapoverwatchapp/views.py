@@ -14,7 +14,7 @@ def maps(request):
 	for map in data_from_db:
 		formatted_data.append({
 			'map_name': map.map_name,
-			'map_id': map.map_id,
+			'map_id': map.id,
 			'map_type': dict(MAP_TYPE).get(map.map_type),
 			'map_url': 'mapcallouts/' + str(map.map_id)
 		})
@@ -29,6 +29,7 @@ def mapcallouts(request, map_id):
 	formatted_data = []
 	for image in data_from_db:
 		formatted_data.append({
+			'image_id': image.id,
 			'image_map': image.image_map,
 			'image_url': image.image_url,
 			'image_order': image.image_order,
