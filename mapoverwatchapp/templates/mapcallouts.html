@@ -1,10 +1,6 @@
 {% extends 'index.html' %}
 
 {% block body %}
-{{ data|json_script:"data" }}
-<script>
-	data = JSON.parse(document.getElementById('data').textContent)
-</script>
 <script>
 	component_name = 'image-carousel';
 </script>
