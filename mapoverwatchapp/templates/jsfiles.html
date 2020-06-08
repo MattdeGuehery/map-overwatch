@@ -1,0 +1,22 @@
+{% load static %}
+{{ data|json_script:"data" }}
+<script>
+	data = JSON.parse(document.getElementById('data').textContent)
+</script>
+{% if debug %}
+<script src="{% static 'js/cookies.js' %}"></script>
+<script src="{% static 'js/static-list.js' %}"></script>
+<script src="{% static 'js/collapsible-list.js' %}"></script>
+<script src="{% static 'js/map-list.js' %}"></script>
+<script src="{% static 'js/image-carousel.js' %}"></script>
+<script src="{% static 'js/main-app-bar.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+{% else %}
+<script src="./cookies.js"></script>
+<script src="./static-list.js"></script>
+<script src="./collapsible-list.js"></script>
+<script src="./map-list.js"></script>
+<script src="./image-carousel.js"></script>
+<script src="./main-app-bar.js"></script>
+<script src="./index.js"></script>
+{% endif %}

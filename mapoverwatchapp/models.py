@@ -2,24 +2,18 @@ from django.db import models
 
 # Create your models here.
 
+MAP_TYPE = [
+    ('AS', 'Assault'),
+    ('ES', 'Escort'),
+    ('CN', 'Control'),
+    ('EH', 'Escort Hybrid'),
+    ('AR', 'Arena'),
+]
+
 
 class map_table(models.Model):
     map_name = models.CharField(max_length=120)
     map_id = models.IntegerField()
-
-    Assault = 'AS'
-    Escort = 'ES'
-    Control = 'CN'
-    Escort_hybrid = 'EH'
-    Arena = 'AR'
-
-    MAP_TYPE = [
-        (Assault, 'Assault'),
-        (Escort, 'Escort'),
-        (Control, 'Control'),
-        (Escort_hybrid, 'Escort Hybrid'),
-        (Arena, 'Arena'),
-    ]
 
     map_type = models.CharField(
         max_length=2,
@@ -28,8 +22,7 @@ class map_table(models.Model):
 
 
 class image_table(models.Model):
-    image_id = models.IntegerField()
-    image_map = models.CharField(max_length=120)
-    image_url = models.URLField(max_length=300)
+    image_map = models.IntegerField()
+    image_url = models.CharField(max_length=300)
     image_order = models.IntegerField()
     isTopDown = models.BooleanField(default=False)

@@ -1,38 +1,39 @@
 import json
-from django.shortcuts import render
+import logging
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
 from django.http import HttpResponse
+from mapoverwatchapp.models import map_table, image_table, MAP_TYPE
+logger = logging.getLogger(__name__)
+
+def maps(request):
+	data_from_db = map_table.objects.all()
+	formatted_data = []
+	for map in data_from_db:
+		formatted_data.append({
+			'map_name': map.map_name,
+			'map_id': map.map_id,
+			'map_type': dict(MAP_TYPE).get(map.map_type),
+			'map_url': 'mapcallouts/' + str(map.map_id)
+		})
+	context = {'data': formatted_data}
+	return render(request, 'maps.html', context)
 
 
-def index(request):
-    return render(request, 'index.html')
+def mapcallouts(request, map_id):
+	map_id = map_id or request.GET['map_id']
+	logger.info('map_id=' + str(map_id))
+	data_from_db = image_table.objects.filter(image_map=map_id)
+	formatted_data = []
+	for image in data_from_db:
+		formatted_data.append({
+			'image_map': image.image_map,
+			'image_url': image.image_url,
+			'image_order': image.image_order,
+			'isTopDown': image.isTopDown,
+		})
 
-
-def mapcallouts(request):
-    return render(request, 'mapcallouts.html')
-
-
-# an example endpoint. This will probably change
-def get_maps(request):
-    maps = [
-        {'order': 0, 'name': 'Hanamura', 'url': 'static/images/Dorado'},
-        {'order': 1, 'name': 'Eichenwalde', 'url': 'static/images/Eichenwalde'},
-        {'order': 2, 'name': 'Hanamura', 'url': 'static/images/Hanamura'},
-        {'order': 3, 'name': 'Hollywood', 'url': 'static/images/Hollywood'},
-        {'order': 4, 'name': 'Horizon Lunar Colony', 'url': 'static/images/Horizon Lunar Colony'},
-        {'order': 5, 'name': 'Ilios', 'url': 'static/images/Ilios'},
-        {'order': 6, 'name': 'Junkertown', 'url': 'static/images/Junkertown'},
-        {'order': 7, 'name': 'Kings Row', 'url': 'static/images/Kings Row'},
-        {'order': 8, 'name': 'Lijang', 'url': 'static/images/Lijang'},
-        {'order': 9, 'name': 'Nepal', 'url': 'static/images/Nepal'},
-        {'order': 10, 'name': 'Numbani', 'url': 'static/images/Numbani'},
-        {'order': 11, 'name': 'Oasis', 'url': 'static/images/Oasis'},
-        {'order': 12, 'name': 'Route 66', 'url': 'static/images/Route 66'},
-        {'order': 13, 'name': 'Temple of Anubis', 'url': 'static/images/Temple of Anubis'},
-        {'order': 14, 'name': 'Top Down', 'url': 'static/images/Top Down'},
-        {'order': 15, 'name': 'Volskaya Industries', 'url': 'static/images/Volskaya Industries'},
-        {'order': 16, 'name': 'Watchpoint Gibraltar', 'url': 'static/images/Watchpoint Gibraltar'},
-    ]
-    return HttpResponse(json.dumps(maps))
+	context = {'data': formatted_data}
+	return render(request, 'mapcallouts.html', context)
