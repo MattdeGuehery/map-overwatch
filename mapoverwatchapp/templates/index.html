@@ -5,32 +5,27 @@
 
 {% block body %}
 <script>
-	var data = [
-		{ id: 0, url: "/static/maps/Dorado/Dorado+map+callouts+one+Overwatch.png" },
-		{ id: 1, url: "/static/maps/Dorado/Dorado+map+callouts+two+Overwatch.png" },
-		{ id: 2, url: "/static/maps/Dorado/Dorado+map+callouts+three+Overwatch.png" },
-		{ id: 3, url: "/static/maps/Dorado/Dorado+map+callouts+four+Overwatch.png" },
-		{ id: 4, url: "/static/maps/Dorado/Dorado+map+callouts+five+Overwatch.png" },
-		{ id: 5, url: "/static/maps/Dorado/Dorado+map+callouts+six+Overwatch.png" },
-		{ id: 6, url: "/static/maps/Dorado/Dorado+map+callouts+seven+Overwatch.png" },
-	];
+	data = {{ data }}
 </script>
 <script>
-	openingTab = 0;
-	component_name = 'home-cards';
+	component_name = 'map-list';
 </script>
 <div id="app">
 	<!-- vue code will be placed here -->
 </div>
 {% if debug %}
-<script src="{% static 'js/home.js' %}"></script>
+<script src="{% static 'js/static-list.js' %}"></script>
+<script src="{% static 'js/collapsible-list.js' %}"></script>
+<script src="{% static 'js/map-list.js' %}"></script>
 <script src="{% static 'js/image-carousel.js' %}"></script>
 <script src="{% static 'js/main-app-bar.js' %}"></script>
 <script src="{% static 'js/index.js' %}"></script>
 {% else %}
-<script src="home.js"></script>
-<script src="image-carousel.js"></script>
-<script src="main-app-bar.js"></script>
-<script src="index.js"></script>
+<script src="./static-list.js"></script>
+<script src="./collapsible-list.js"></script>
+<script src="./map-list.js"></script>
+<script src="./image-carousel.js"></script>
+<script src="./main-app-bar.js"></script>
+<script src="./index.js"></script>
 {% endif %}
 {% endblock %}

@@ -5,18 +5,9 @@
 
 {% block body %}
 <script>
-	var data = [
-		{ id: 0, url: "/static/maps/Dorado/Dorado+map+callouts+one+Overwatch.png" },
-		{ id: 1, url: "/static/maps/Dorado/Dorado+map+callouts+two+Overwatch.png" },
-		{ id: 2, url: "/static/maps/Dorado/Dorado+map+callouts+three+Overwatch.png" },
-		{ id: 3, url: "/static/maps/Dorado/Dorado+map+callouts+four+Overwatch.png" },
-		{ id: 4, url: "/static/maps/Dorado/Dorado+map+callouts+five+Overwatch.png" },
-		{ id: 5, url: "/static/maps/Dorado/Dorado+map+callouts+six+Overwatch.png" },
-		{ id: 6, url: "/static/maps/Dorado/Dorado+map+callouts+seven+Overwatch.png" },
-	];
+	data = {{ data }}
 </script>
 <script>
-	openingTab = 1;
 	component_name = 'image-carousel';
 </script>
 <div id="app">

@@ -4,27 +4,17 @@ Vue.component('main-app-bar', {
 	},
 	data: () => ({
 		darkMode: false,
+		title: 'Map Overwatch'
 	}),
 	created: function () {
 		this.getDarkCookie();
 	},
 	computed: {
-		selectedTab: {
-			get: function () {
-				return openingTab;
-			},
-			set: function () {
-				return openingTab;
-			}
-		},
-		tabCards: function () {
-			let tabCards = [];
-			tabCards.push({ name: 'Home', text: '', id: 0, link: '/', });
-			tabCards.push({ name: 'Map Callouts', text: '', id: 1, link: '/mapcallouts/', });
-			return tabCards;
-		}
 	},
 	methods: {
+		sendToHomePage: function () {
+			return window.location = '/';
+		},
 		getElByTag: function (tag) {
 			var element = document.getElementsByTagName(tag)[0];
 			return element;
@@ -58,10 +48,8 @@ Vue.component('main-app-bar', {
 		}
 	},
 	template: `
-	<v-app-bar app dense>
-		<v-tabs align-with-title v-model="selectedTab">
-			<v-tab v-for="card in tabCards" :key="card.id" :href="card.link">{{card.name}}</v-tab>
-		</v-tabs>
+	<v-app-bar app>
+		<h1 cursor="pointer" @click="sendToHomePage">{{ title }}</h1>
 		<v-spacer></v-spacer>
 		<v-btn icon @click="toggleDarkMode">
 			<v-icon v-if="!darkMode">mdi-lightbulb</v-icon>
