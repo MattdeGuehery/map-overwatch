@@ -14,7 +14,7 @@ new Vue({
 	<v-app id="app">
 		<main-app-bar></main-app-bar>
 		<v-content>
-			<v-container class="fill-height" fluid>			
+			<v-container fluid>			
 				<component v-bind:is="maincomponent"></component>
 			</v-container>
 		</v-content>
