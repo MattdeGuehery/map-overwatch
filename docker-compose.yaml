@@ -21,6 +21,7 @@ services:
       - ./static_files/admin:/var/www/html/static/admin/
       - ./static_files/js:/var/www/html/js
       - ./static_files/maps:/var/www/html/maps
+      - ./static_files/css:/var/www/html/css
       - ./config/nginx/:/etc/nginx/conf.d
     depends_on:
       - app
