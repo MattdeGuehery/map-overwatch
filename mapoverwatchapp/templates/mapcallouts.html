@@ -1,27 +1,11 @@
-{% extends 'header.html' %}
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'index.html' %}
 
 {% block body %}
+{{ data|json_script:"data" }}
 <script>
-	data = {{ data }}
+	data = JSON.parse(document.getElementById('data').textContent)
 </script>
 <script>
 	component_name = 'image-carousel';
 </script>
-<div id="app">
-	<!-- vue code will be placed here -->
-</div>
-{% if debug %}
-<script src="{% static 'js/home.js' %}"></script>
-<script src="{% static 'js/image-carousel.js' %}"></script>
-<script src="{% static 'js/main-app-bar.js' %}"></script>
-<script src="{% static 'js/index.js' %}"></script>
-{% else %}
-<script src="home.js"></script>
-<script src="image-carousel.js"></script>
-<script src="main-app-bar.js"></script>
-<script src="index.js"></script>
-{% endif %}
 {% endblock %}

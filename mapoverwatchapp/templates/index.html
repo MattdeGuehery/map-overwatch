@@ -1,31 +1,16 @@
-{% extends 'header.html' %}
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
-{% block body %}
-<script>
-	data = {{ data }}
-</script>
-<script>
-	component_name = 'map-list';
-</script>
-<div id="app">
-	<!-- vue code will be placed here -->
-</div>
-{% if debug %}
-<script src="{% static 'js/static-list.js' %}"></script>
-<script src="{% static 'js/collapsible-list.js' %}"></script>
-<script src="{% static 'js/map-list.js' %}"></script>
-<script src="{% static 'js/image-carousel.js' %}"></script>
-<script src="{% static 'js/main-app-bar.js' %}"></script>
-<script src="{% static 'js/index.js' %}"></script>
-{% else %}
-<script src="./static-list.js"></script>
-<script src="./collapsible-list.js"></script>
-<script src="./map-list.js"></script>
-<script src="./image-carousel.js"></script>
-<script src="./main-app-bar.js"></script>
-<script src="./index.js"></script>
-{% endif %}
-{% endblock %}
+<head>
+	{% include 'header.html' %}
+</head>
+
+<body>
+	<div id="app">
+		<!-- vue code will be placed here -->
+	</div>
+	{% block body %}{% endblock %}
+	{% include 'jsfiles.html' %}
+</body>
+
+</html>
