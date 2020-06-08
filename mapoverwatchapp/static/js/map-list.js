@@ -1,7 +1,10 @@
 Vue.component('map-list', {
 	data: () => ({
-		listType: false
+		localListType: false
 	}),
+	created: function () {
+		this.getListCookie();
+	},
 	computed: {
 		buttons: function () {
 			var buttons = [];
@@ -22,6 +25,39 @@ Vue.component('map-list', {
 				data = _.groupBy(data, 'map_type');
 			}
 			return this.listType ? (data || {}) : (data || []);
+		},
+		listType: {
+			get: function () {
+				return this.localListType;
+			},
+			set: function (newVal) {
+				this.localListType = newVal == 'true' || newVal;
+				if (newVal) {
+					this.setListCookie();
+				} else {
+					this.removeListCookie();
+				}
+			}
+		}
+	},
+	methods: {
+		saveChange: function (newVal) {
+			if (newVal != this.listType) {
+				this.listType = newVal;
+			}
+		},
+		getListCookie: function () {
+			var listType = shared_readCookie('listType');
+			this.listType = listType;
+		},
+		setListCookie: function () {
+			var date = new Date();
+			var daysToAdd = 10 * 365; // add ~10 years to the cookie
+			var expiration = date.setDate(date.getDate() + daysToAdd);
+			shared_createCookie('listType', true, new Date(expiration).toUTCString());
+		},
+		removeListCookie: function () {
+			shared_removeCookie('listType');
 		}
 	},
 	template: `
@@ -29,7 +65,7 @@ Vue.component('map-list', {
 		<v-col cols="12">
 			<v-row>
 				<v-col offset="10" cols="2">
-					<v-btn-toggle v-model="listType" mandatory>
+					<v-btn-toggle @change="saveChange" v-model="listType" mandatory>
 						<v-btn v-for="(b,i) in buttons" :key="i" :value="b.value">{{ b.text }}</v-btn>
 					</v-btn-toggle>
 				</v-col>
