@@ -18,9 +18,9 @@ services:
       - "443:443"
       - "80:80"
     volumes:
-      - ./mapoverwatchapp/static/maps:/var/www/html/images/maps
-      - ./mapoverwatchapp/static/js:/var/www/html/js
-      - ./mapoverwatchapp/static/css:/var/www/html/css
+      - ./static_files/admin:/var/www/html/static/admin/
+      - ./static_files/js:/var/www/html/static/js
+      - ./static_files/maps:/var/www/html/static/maps
       - ./config/nginx/:/etc/nginx/conf.d
     depends_on:
       - app
