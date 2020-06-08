@@ -19,8 +19,8 @@ services:
       - "80:80"
     volumes:
       - ./static_files/admin:/var/www/html/static/admin/
-      - ./static_files/js:/var/www/html/static/js
-      - ./static_files/maps:/var/www/html/static/maps
+      - ./static_files/js:/var/www/html/js
+      - ./static_files/maps:/var/www/html/maps
       - ./config/nginx/:/etc/nginx/conf.d
     depends_on:
       - app
