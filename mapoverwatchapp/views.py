@@ -16,7 +16,7 @@ def maps(request):
 			'map_name': map.map_name,
 			'map_id': map.id,
 			'map_type': dict(MAP_TYPE).get(map.map_type),
-			'map_url': 'mapcallouts/' + str(map.map_id)
+			'map_url': 'mapcallouts/' + str(map.id)
 		})
 	context = {'data': formatted_data}
 	return render(request, 'maps.html', context)
