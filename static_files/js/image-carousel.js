@@ -4,7 +4,8 @@ Vue.component('image-carousel', {
 	}),
 	computed: {
 		images: function () {
-			return window.data || [];
+			var data = window.data || [];
+			return _.sortBy(data, 'image_order');
 		}
 	},
 	methods: {
