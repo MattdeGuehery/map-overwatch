@@ -23,7 +23,10 @@ def maps(request):
 
 
 def mapcallouts(request, map_id):
-	map_id = map_id or request.GET['map_id']
+	requestedmap = map_id or request.GET['map_id']
+	map=map_table.objects.get(id=requestedmap)
+	# map_types=map_table.objects.filter(map_type=map.map_type).
+	logger.info(map.map_name)
 	logger.info('map_id=' + str(map_id))
 	data_from_db = image_table.objects.filter(image_map=map_id)
 	formatted_data = []
@@ -31,7 +34,7 @@ def mapcallouts(request, map_id):
 		formatted_data.append({
 			'image_id': image.id,
 			'image_map': image.image_map,
-			'image_url': image.image_url,
+			'image_url': '/static/maps/'+map.map_name+'/'+image.image_url,
 			'image_order': image.image_order,
 			'isTopDown': image.isTopDown,
 		})
