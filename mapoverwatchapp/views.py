@@ -32,13 +32,21 @@ def mapcallouts(request, map_id):
 	formatted_data = []
 	for image in data_from_db:
 		debug_path = '/static/' if os.getenv('DJANGO_DEBUG', False) else '/'
+		underscore_map_name = map.map_name.replace(' ', '_')
 		formatted_data.append({
 			'image_id': image.id,
 			'image_map': image.image_map,
-			'image_url': debug_path + 'maps/' + map.map_name + '/' + image.image_url,
+			'image_url': debug_path + 'maps/' + underscore_map_name + '/' + image.image_url,
 			'image_order': image.image_order,
 			'isTopDown': image.isTopDown,
 		})
 
 	context = {'data': formatted_data}
 	return render(request, 'mapcallouts.html', context)
+
+
+# folders = load_folders()
+# for folder in folders:
+# 	files = load_files()
+# 	for f in files:
+# 		f.replace('+', '_')
