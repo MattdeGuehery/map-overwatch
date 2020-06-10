@@ -43,13 +43,3 @@ def mapcallouts(request, map_id):
 
 	context = {'data': formatted_data}
 	return render(request, 'mapcallouts.html', context)
-
-# https://realpython.com/working-with-files-in-python/
-# https://realpython.com/working-with-files-in-python/#directory-listing-in-modern-python-versions
-# https://realpython.com/working-with-files-in-python/#listing-all-files-in-a-directory
-# https://realpython.com/working-with-files-in-python/#renaming-files-and-directories
-# folders = load_folders()
-# for folder in folders:
-# 	files = load_files()
-# 	for f in files:
-# 		f.replace('+', '_')
