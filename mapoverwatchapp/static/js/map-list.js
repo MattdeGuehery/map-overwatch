@@ -64,7 +64,7 @@ Vue.component('map-list', {
 	<v-row>
 		<v-col cols="12">
 			<v-row>
-				<v-col offset="10" cols="2">
+				<v-col cols="2">
 					<v-btn-toggle @change="saveChange" v-model="listType" mandatory>
 						<v-btn v-for="(b,i) in buttons" :key="i" :value="b.value">{{ b.text }}</v-btn>
 					</v-btn-toggle>
