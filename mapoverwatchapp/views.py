@@ -1,5 +1,6 @@
 import json
 import logging
+import os
 from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
@@ -23,15 +24,19 @@ def maps(request):
 
 
 def mapcallouts(request, map_id):
-	map_id = map_id or request.GET['map_id']
+	requestedmap = map_id or request.GET['map_id']
+	map = map_table.objects.get(id=requestedmap)
+	logger.info(map.map_name)
 	logger.info('map_id=' + str(map_id))
 	data_from_db = image_table.objects.filter(image_map=map_id)
 	formatted_data = []
 	for image in data_from_db:
+		debug_path = '/static/' if os.getenv('DJANGO_DEBUG', False) else '/'
+		underscore_map_name = map.map_name.replace(' ', '_')
 		formatted_data.append({
 			'image_id': image.id,
 			'image_map': image.image_map,
-			'image_url': image.image_url,
+			'image_url': debug_path + 'maps/' + underscore_map_name + '/' + image.image_url,
 			'image_order': image.image_order,
 			'isTopDown': image.isTopDown,
 		})
